@@ -16,6 +16,7 @@
     <jaxrs:server id="jaxrsService" address="/">
        <jaxrs:serviceBeans>
 	      <ref bean="helloWorldService"/>
+	      <ref bean="ProfileService"/>
 	   </jaxrs:serviceBeans>
 	</jaxrs:server>
 </beans>
