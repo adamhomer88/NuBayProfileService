@@ -8,6 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 @Path("/profile")
 public interface ProfileService {
@@ -19,12 +20,12 @@ public interface ProfileService {
 	
 	@GET
 	@Path("/{id}")
-	@Produces("text/html")
-	String getProfile(@PathParam("id") String id);
+	@Produces("application/json")
+	Response getProfile(@PathParam("id") int id);
 	
 	@POST
 	@Path("/{id}")
-	String updateProfile(@PathParam("id") String id);
+	String updateProfile(@PathParam("id") int id);
 	
 	@POST
 	@Path("/create")
@@ -33,6 +34,6 @@ public interface ProfileService {
 	
 	@DELETE
 	@Path("/delete/{id}")
-	String deleteProfile(@PathParam("id") String id);
+	String deleteProfile(@PathParam("id") int id);
 	
 }
