@@ -1,11 +1,17 @@
 package edu.neumont.csc380.ProfileWebService.model;
 
-public class Person {
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.sun.xml.txw2.annotation.XmlElement;
+
+@XmlRootElement(name = "profile")
+public class Profile {
 	private int id;
 	private String username;
 	private String firstName;
 	private String lastName;
 	private ContactInformation contactInformation;
+	@XmlElement
 	public int getId() {
 		return id;
 	}

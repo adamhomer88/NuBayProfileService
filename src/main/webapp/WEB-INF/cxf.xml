@@ -11,12 +11,21 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
+	<bean id="jsonProvider" class = "com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider">
+		<property name = "producedMediaTypes">
+			<list>
+				<value>application/json</value>
+				<value>application/application/ProfileWebService-v1+json</value>
+			</list>
+		</property>
+	</bean>
     <context:component-scan base-package="edu.neumont.csc380"/>
-	
     <jaxrs:server id="jaxrsService" address="/">
        <jaxrs:serviceBeans>
-	      <ref bean="helloWorldService"/>
 	      <ref bean="ProfileService"/>
 	   </jaxrs:serviceBeans>
+	   <jaxrs:providers>
+		  <ref bean="jsonProvider"/>
+	   </jaxrs:providers>
 	</jaxrs:server>
 </beans>

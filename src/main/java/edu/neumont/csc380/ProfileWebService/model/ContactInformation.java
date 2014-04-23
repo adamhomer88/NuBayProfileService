@@ -1,5 +1,8 @@
 package edu.neumont.csc380.ProfileWebService.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "contactInformation")
 public class ContactInformation {
 	
 	private String phone;

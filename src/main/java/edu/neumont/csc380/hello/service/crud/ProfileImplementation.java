@@ -3,25 +3,28 @@ import java.util.HashMap;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonWriter;
 
 import edu.neumont.csc380.ProfileWebService.model.ContactInformation;
-import edu.neumont.csc380.ProfileWebService.model.Person;
+import edu.neumont.csc380.ProfileWebService.model.Profile;
 
 @Service("ProfileService")
-public class Profile implements ProfileService {
+public class ProfileImplementation implements ProfileService {
 	
-	HashMap<Integer, Person> OurTestPerson = new HashMap<Integer, Person>();
+	HashMap<Integer, Profile> OurTestPersons = new HashMap<Integer, Profile>();
 	
-	public Profile(){
+	public ProfileImplementation(){
 		Initialize();
 	}
 	
 	public void Initialize(){
-		Person person = new Person();
+		Profile person = new Profile();
 		person.setId(1);
 		person.setFirstName("MyName is Your Mom");
 		person.setLastName("Not quite your mom's last name");
@@ -31,14 +34,16 @@ public class Profile implements ProfileService {
 		conactinfo.setEmail("thedrunkenmonkey33@yourmom.com");
 		conactinfo.setPhone("555-poop");
 		person.setContactInformation(conactinfo);
-		OurTestPerson.put(person.getId(), person);
+		OurTestPersons.put(person.getId(), person);
 	}
 	
 	
 	public Response getProfile(int id) {
-		Gson gson = new Gson();
-		String json = gson.toJson(OurTestPerson.get(id));
-		return Response.ok(json, MediaType.APPLICATION_JSON).build();
+		Profile requestedProfile = OurTestPersons.get(id);
+		if(requestedProfile == null)
+			return Response.status(Status.NOT_FOUND).build();
+		else
+			return Response.ok(requestedProfile, "application/json").build();
 	}
 
 	public String updateProfile(int id) {
@@ -54,12 +59,5 @@ public class Profile implements ProfileService {
 	public String deleteProfile(int id) {
 		
 		return "delete profile";
-	}
-
-	public String getYourMom() {
-		
-		return "Your mom was called";
-	}
-
-	
+	}	
 }
