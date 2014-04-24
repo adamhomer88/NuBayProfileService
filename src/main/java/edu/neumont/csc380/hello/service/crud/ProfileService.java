@@ -10,7 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import org.springframework.http.MediaType;
+import edu.neumont.csc380.ProfileWebService.model.Profile;
 
 @Path("/profile")
 @Consumes("application/json")
@@ -27,7 +27,7 @@ public interface ProfileService {
 	
 	@POST
 	@Path("/create")
-	String postProfile();
+	Response postProfile(Profile profile);
 	
 	@DELETE
 	@Path("/delete/{id}")

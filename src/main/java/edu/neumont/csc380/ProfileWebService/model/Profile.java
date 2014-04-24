@@ -11,7 +11,7 @@ public class Profile {
 	private String firstName;
 	private String lastName;
 	private ContactInformation contactInformation;
-	@XmlElement
+
 	public int getId() {
 		return id;
 	}

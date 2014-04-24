@@ -1,15 +1,12 @@
 package edu.neumont.csc380.hello.service.crud;
 import java.util.HashMap;
 
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import edu.neumont.csc380.ProfileWebService.model.ContactInformation;
 import edu.neumont.csc380.ProfileWebService.model.Profile;
@@ -51,13 +48,14 @@ public class ProfileImplementation implements ProfileService {
 		return "updating profile " + id;
 	}
 
-	public String postProfile() {
-		
-		return "posting profile";
+	public Response postProfile(Profile profile) {
+		profile.setId((OurTestPersons.size()+1));
+		OurTestPersons.put(profile.getId(), profile);
+		return Response.ok(profile, "application/json").build();
 	}
 
 	public String deleteProfile(int id) {
 		
 		return "delete profile";
-	}	
+	}
 }
