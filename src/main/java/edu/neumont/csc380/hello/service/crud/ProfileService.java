@@ -23,14 +23,14 @@ public interface ProfileService {
 	
 	@PUT
 	@Path("/{id}")
-	String updateProfile(@PathParam("id") int id);
+	Response updateProfile(@PathParam("id") int id, Profile profile);
 	
 	@POST
 	@Path("/create")
 	Response postProfile(Profile profile);
 	
 	@DELETE
-	@Path("/delete/{id}")
-	String deleteProfile(@PathParam("id") int id);
+	@Path("/{id}")
+	Response deleteProfile(@PathParam("id") int id);
 	
 }

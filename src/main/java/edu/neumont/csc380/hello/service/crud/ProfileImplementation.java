@@ -43,9 +43,14 @@ public class ProfileImplementation implements ProfileService {
 			return Response.ok(requestedProfile, "application/json").build();
 	}
 
-	public String updateProfile(int id) {
-		
-		return "updating profile " + id;
+	public Response updateProfile(int id, Profile profile) {
+		if(OurTestPersons.containsKey(id)){
+			profile.setId(id);
+			OurTestPersons.put(id, profile);
+		}
+		else
+			return Response.notModified().build();
+		return Response.ok(profile, "application/json").build();
 	}
 
 	public Response postProfile(Profile profile) {
@@ -54,8 +59,13 @@ public class ProfileImplementation implements ProfileService {
 		return Response.ok(profile, "application/json").build();
 	}
 
-	public String deleteProfile(int id) {
-		
-		return "delete profile";
+	public Response deleteProfile(int id) {
+		Profile removedProfile = null;
+		if(OurTestPersons.containsKey(id)){
+			removedProfile = OurTestPersons.remove(id);
+		}
+		else
+			return Response.status(Status.NOT_FOUND).build();
+		return Response.ok(removedProfile).build();
 	}
 }
