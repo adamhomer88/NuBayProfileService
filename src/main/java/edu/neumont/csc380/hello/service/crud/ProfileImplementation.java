@@ -44,6 +44,8 @@ public class ProfileImplementation implements ProfileService {
 	}
 
 	public Response updateProfile(int id, Profile profile) {
+		if(id != profile.getId())
+			return Response.status(409).build();
 		if(OurTestPersons.containsKey(id)){
 			profile.setId(id);
 			OurTestPersons.put(id, profile);
@@ -55,6 +57,9 @@ public class ProfileImplementation implements ProfileService {
 
 	public Response postProfile(Profile profile) {
 		profile.setId((OurTestPersons.size()+1));
+		if(profile.getPassword() ==null || profile.getUsername() == null)
+			return Response.status(409).build();
+		//SendPasswordToAuthenticationServer
 		OurTestPersons.put(profile.getId(), profile);
 		return Response.ok(profile, "application/json").build();
 	}

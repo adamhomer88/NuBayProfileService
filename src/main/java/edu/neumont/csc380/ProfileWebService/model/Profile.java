@@ -10,6 +10,7 @@ public class Profile {
 	private String username;
 	private String firstName;
 	private String lastName;
+	private String password;
 	private ContactInformation contactInformation;
 
 	public int getId() {
@@ -41,6 +42,12 @@ public class Profile {
 	}
 	public void setContactInformation(ContactInformation contactInformation) {
 		this.contactInformation = contactInformation;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	
