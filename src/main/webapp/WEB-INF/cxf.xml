@@ -13,6 +13,7 @@
 
 	<bean id="jsonProvider" class = "com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider">
 	</bean>
+	<bean id="authorizationFilter" class = "edu.neumont.csc380.CustomProviders.AuthRequestHandler"></bean>
     <context:component-scan base-package="edu.neumont.csc380"/>
     <jaxrs:server id="jaxrsService" address="/">
        <jaxrs:serviceBeans>
@@ -20,6 +21,7 @@
 	   </jaxrs:serviceBeans>
 	   <jaxrs:providers>
 		  <ref bean="jsonProvider"/>
+		  <ref bean="authorizationFilter"/>
 	   </jaxrs:providers>
 	</jaxrs:server>
 </beans>

@@ -16,6 +16,9 @@ public class ProfileImplementation implements ProfileService {
 	
 	HashMap<Integer, Profile> OurTestPersons = new HashMap<Integer, Profile>();
 	
+	String password = "drunkenmonkey";
+	
+	
 	public ProfileImplementation(){
 		Initialize();
 	}
@@ -44,7 +47,8 @@ public class ProfileImplementation implements ProfileService {
 	}
 
 	public Response updateProfile(int id, Profile profile) {
-		if(id != profile.getId())
+		System.out.println(profile.getId());
+		if(profile.getId()!= 0 && id != profile.getId())
 			return Response.status(409).build();
 		if(OurTestPersons.containsKey(id)){
 			profile.setId(id);
