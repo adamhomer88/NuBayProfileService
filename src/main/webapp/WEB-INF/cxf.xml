@@ -20,8 +20,12 @@
 	      <ref bean="ProfileService"/>
 	   </jaxrs:serviceBeans>
 	   <jaxrs:providers>
-		  <ref bean="jsonProvider"/>
-		  <ref bean="authorizationFilter"/>
+		  <ref bean="jsonProvider" />
+		  <ref bean="authorizationFilter" />
+		  <bean class="edu.neumont.csc380.ExceptionManagement.forbidden.ForbiddenExceptionMapper" />
+		  <bean class="edu.neumont.csc380.ExceptionManagement.invalidInput.InvalidInputExceptionMapper" />
+		  <bean class="edu.neumont.csc380.ExceptionManagement.unauthorized.UnauthorizedExceptionMapper" />
+		  <bean class="edu.neumont.csc380.ExceptionManagement.notFound.notFoundExceptionMapper" />
 	   </jaxrs:providers>
 	</jaxrs:server>
 </beans>
