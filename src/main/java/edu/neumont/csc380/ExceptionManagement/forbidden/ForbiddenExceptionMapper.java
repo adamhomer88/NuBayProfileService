@@ -7,7 +7,7 @@ import javax.ws.rs.ext.ExceptionMapper;
 public class ForbiddenExceptionMapper implements ExceptionMapper<ForbiddenException> {
 
 	public Response toResponse(ForbiddenException exception) {
-		Status currentStatus = Response.Status.FORBIDDEN; 
+		Status currentStatus = Response.Status.FORBIDDEN;
 		return Response.status(currentStatus).header("exception", exception.getMessage()).build();
 	}
 	

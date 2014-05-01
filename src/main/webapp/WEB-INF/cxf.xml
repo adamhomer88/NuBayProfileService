@@ -11,9 +11,9 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-	<bean id="jsonProvider" class = "com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider">
-	</bean>
-	<bean id="authorizationFilter" class = "edu.neumont.csc380.CustomProviders.AuthRequestHandler"></bean>
+	<bean id="jsonProvider" class = "com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
+	<bean id="authorizationFilter" class = "edu.neumont.csc380.CustomProviders.AuthRequestHandler"/>
+	<bean id="exceptionMapper" class = "edu.neumont.csc380.ExceptionManagement.CustomExceptionMapper"/>
     <context:component-scan base-package="edu.neumont.csc380"/>
     <jaxrs:server id="jaxrsService" address="/">
        <jaxrs:serviceBeans>
@@ -22,10 +22,11 @@
 	   <jaxrs:providers>
 		  <ref bean="jsonProvider" />
 		  <ref bean="authorizationFilter" />
-		  <bean class="edu.neumont.csc380.ExceptionManagement.forbidden.ForbiddenExceptionMapper" />
+		  <ref bean="exceptionMapper"/>
+		  <!--<bean class="edu.neumont.csc380.ExceptionManagement.forbidden.ForbiddenExceptionMapper" />
 		  <bean class="edu.neumont.csc380.ExceptionManagement.invalidInput.InvalidInputExceptionMapper" />
 		  <bean class="edu.neumont.csc380.ExceptionManagement.unauthorized.UnauthorizedExceptionMapper" />
-		  <bean class="edu.neumont.csc380.ExceptionManagement.notFound.notFoundExceptionMapper" />
+		  <bean class="edu.neumont.csc380.ExceptionManagement.notFound.notFoundExceptionMapper" />-->
 	   </jaxrs:providers>
 	</jaxrs:server>
 </beans>

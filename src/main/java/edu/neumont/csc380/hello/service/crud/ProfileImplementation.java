@@ -4,6 +4,7 @@ import java.util.HashMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
@@ -46,10 +47,10 @@ public class ProfileImplementation implements ProfileService {
 			return Response.ok(requestedProfile, "application/json").build();
 	}
 
-	public Response updateProfile(int id, Profile profile) {
+	public Response updateProfile(int id, Profile profile) throws InvalidInputException {
 		System.out.println(profile.getId());
 		if(profile.getId()!= 0 && id != profile.getId())
-			return Response.status(409).build();
+			throw new InvalidInputException("The Id passed in the JSON does not match the ID in the path URL");
 		if(OurTestPersons.containsKey(id)){
 			profile.setId(id);
 			OurTestPersons.put(id, profile);

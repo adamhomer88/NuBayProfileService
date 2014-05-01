@@ -10,6 +10,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.jdt.core.compiler.InvalidInputException;
+
 import edu.neumont.csc380.ProfileWebService.model.Profile;
 
 @Path("/profile")
@@ -23,7 +25,7 @@ public interface ProfileService {
 	
 	@PUT
 	@Path("/{id}")
-	Response updateProfile(@PathParam("id") int id, Profile profile);
+	Response updateProfile(@PathParam("id") int id, Profile profile) throws InvalidInputException;
 	
 	@POST
 	@Path("/create")

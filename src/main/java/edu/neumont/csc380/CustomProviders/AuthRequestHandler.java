@@ -10,6 +10,9 @@ import org.apache.cxf.jaxrs.ext.RequestHandler;
 import org.apache.cxf.jaxrs.model.ClassResourceInfo;
 import org.apache.cxf.message.Message;
 
+import edu.neumont.csc380.ExceptionManagement.forbidden.ForbiddenException;
+import edu.neumont.csc380.ExceptionManagement.unauthorized.UnauthorizedException;
+
 @Provider
 public class AuthRequestHandler implements RequestHandler{
 
@@ -18,9 +21,7 @@ public class AuthRequestHandler implements RequestHandler{
 		if(method.equals("PUT") || method.equals("DELETE"))
 		{
 			String token = getAuthToken(arg0);
-			boolean authenticated = authenticateRequest(token);
-			if(!authenticated)
-				return Response.status(Response.Status.UNAUTHORIZED).build();
+			
 		}
 		System.out.println("Authorized User");
 		return null;
@@ -32,13 +33,20 @@ public class AuthRequestHandler implements RequestHandler{
 		return morestuff.get(0);
 	}
 
-	private boolean authenticateRequest(String token) {
+	private Response authenticateRequest(String token) {
 		boolean isAuthenticated = false;
-		if(token != null){ isAuthenticated = true; }
-		//compare tokens
-		else{}
-		//authenticateUserUsingAuthClient
-		return isAuthenticated;
+		if(token != null && token.equals("serverPassword")){ isAuthenticated = true; }
+		else if(token != null)
+		{
+			//authenticate user
+			//if not authenticated return forbidden
+		}
+		else
+		{
+			
+			//authenticateUserUsingAuthClient
+		}
+		return null;
 	}
 
 }
