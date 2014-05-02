@@ -60,11 +60,10 @@ public class ProfileImplementation implements ProfileService {
 		return Response.ok(profile, "application/json").build();
 	}
 
-	public Response postProfile(Profile profile) {
+	public Response postProfile(Profile profile) throws InvalidInputException{
 		profile.setId((OurTestPersons.size()+1));
 		if(profile.getPassword() ==null || profile.getUsername() == null)
-			return Response.status(409).build();
-		//SendPasswordToAuthenticationServer
+			throw new InvalidInputException();
 		OurTestPersons.put(profile.getId(), profile);
 		return Response.ok(profile, "application/json").build();
 	}

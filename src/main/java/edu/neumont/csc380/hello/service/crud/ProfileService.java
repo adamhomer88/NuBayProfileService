@@ -29,7 +29,7 @@ public interface ProfileService {
 	
 	@POST
 	@Path("/create")
-	Response postProfile(Profile profile);
+	Response postProfile(Profile profile) throws InvalidInputException;
 	
 	@DELETE
 	@Path("/{id}")
