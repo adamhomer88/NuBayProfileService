@@ -15,8 +15,8 @@ import org.eclipse.jdt.core.compiler.InvalidInputException;
 import edu.neumont.csc380.ProfileWebService.model.Profile;
 
 @Path("/profile")
-@Consumes("application/NubayProfileWebService.v1.profile+json")
-@Produces("application/NubayProfileWebService.v1.profile+json")
+@Consumes("application/json")
+@Produces("application/json")
 public interface ProfileService {
 	
 	@GET

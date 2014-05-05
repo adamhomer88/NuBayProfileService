@@ -7,8 +7,6 @@ import javax.ws.rs.core.Response.Status;
 import org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-
 import edu.neumont.csc380.ProfileWebService.model.ContactInformation;
 import edu.neumont.csc380.ProfileWebService.model.Profile;
 
