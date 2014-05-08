@@ -21,7 +21,6 @@ public class AuthRequestHandler implements RequestHandler{
 		if(method.equals("PUT") || method.equals("DELETE"))
 		{
 			String token = getAuthToken(arg0);
-			
 		}
 		System.out.println("Authorized User");
 		return null;
